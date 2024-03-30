@@ -12,7 +12,11 @@ const userModel=mongoose.Schema({
   email:String,
   password:String,
   profileImage:String,
-  boards:[] 
+  boards:[],
+  posts:[
+    type=mongoose.Schema.Types.ObjectId,
+    ref="post"
+  ] 
 })
 
 userModel.plugin(plm);
