@@ -35,14 +35,13 @@
   <div class="cards flex flex-wrap gap-10 px-10 mt-10">
     <div class="card">
       <div class="w-48 h-40 bg-white rounded-lg overflow-hidden">
-        <img
-          class="h-full w-full object-cover"
-          src="/public/images/uploads/<%=user.posts[0].image%>"
-          alt=""
-        />
-      </div>
-      <h3 class="text-lg font-semibold mt-3">All Pins</h3>
-      <h5 class="text-sm font-medium text opacity-60">20 Pins</h5>
+        <img class="h-full w-full object-cover"
+             src="/images/uploads/<%=user.posts[0].image%>"
+             alt=""/>
+    </div>
+    
+      <a href="/show/posts" class="inline-block text-lg font-semibold mt-3">Your Uploaded Pins </a>
+      <h5 class="text-sm font-medium text opacity-60"><%=user.posts.length%> Pins</h5>
     </div>
   </div>
 </div>

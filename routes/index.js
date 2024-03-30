@@ -14,11 +14,23 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/profile',isLoggedin ,async function(req, res, next) {
-  const user= await userModel.findOne({
-    username:req.session.passport.user
-  })
+  const user= 
+  await userModel
+        .findOne({username:req.session.passport.user})
+        .populate("posts");
+        console.log(user);
   res.render('profile',{user,nav:true});
 });
+
+router.get('/show/posts',isLoggedin ,async function(req, res, next) {
+  const user= 
+  await userModel
+        .findOne({username:req.session.passport.user})
+        .populate("posts");
+        console.log(user);
+  res.render('show',{user,nav:true});
+});
+
 
 router.get('/add',isLoggedin ,async function(req, res, next) {
   const user= await userModel.findOne({
@@ -30,7 +42,7 @@ router.get('/add',isLoggedin ,async function(req, res, next) {
 router.post('/createpost',isLoggedin ,upload.single("post-image"),async function(req, res, next) {
   const user= await userModel.findOne({
     username:req.session.passport.user
-  }).populate("posts");
+  })
 
   const post=await postModel.create({
     user:user._id,
@@ -38,7 +50,6 @@ router.post('/createpost',isLoggedin ,upload.single("post-image"),async function
     desc:req.body.desc,
     image:req.file.filename
   });
-
   user.posts.push(post._id);
   await user.save();
   res.redirect("/profile");
