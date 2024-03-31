@@ -30,7 +30,14 @@ router.get('/show/posts',isLoggedin ,async function(req, res, next) {
         console.log(user);
   res.render('show',{user,nav:true});
 });
-
+ 
+router.get("/feed",async (req,res)=>{
+  const user= await userModel.findOne({username:req.session.passport.user})
+  const posts =await postModel.find()
+           .populate("user");
+  
+  res.render("feed",{user,posts,nav:true});
+})
 
 router.get('/add',isLoggedin ,async function(req, res, next) {
   const user= await userModel.findOne({
@@ -79,7 +86,7 @@ router.post('/register', function(req, res, next) {
 
  userModel.register(data,req.body.password)
  .then(()=>{
-  passport.authenticate("local"),(req,res,function(){
+  passport.authenticate("local")(req,res,function(){
     res.redirect("/profile");
   })
  })

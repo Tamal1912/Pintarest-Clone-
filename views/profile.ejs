@@ -18,8 +18,8 @@
       </div>
     </div>
 
-    <h1 class="text-2xl font-semibold mt-5">Tamal Sur</h1>
-    <h3 class="text-md">@username</h3>
+    <h1 class="text-2xl font-semibold mt-5"><%=user.name%></h1>
+    <h3 class="text-md">@<%=user.username%></h3>
     <a
       href="/edit"
       class="py-3 px-5 mt-5 bg-red-700 rounded-full font-semibold text-xs"
@@ -36,7 +36,7 @@
     <div class="card">
       <div class="w-48 h-40 bg-white rounded-lg overflow-hidden">
         <img class="h-full w-full object-cover"
-             src="/images/uploads/<%=user.posts[0].image%>"
+             src="/images/uploads/<%=user?.posts[0]?.image%>"
              alt=""/>
     </div>
     

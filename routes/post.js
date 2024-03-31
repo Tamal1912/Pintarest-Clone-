@@ -9,7 +9,7 @@ const postModel=mongoose.Schema({
  desc:String,
  image:String,
  posts:[
-    {
+    { 
         type:mongoose.Schema.Types.ObjectId,
         ref:"post"
     }
